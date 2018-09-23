@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpauth/phpauth": "dev-master"
+    }
+
+}
