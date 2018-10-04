@@ -1,6 +1,6 @@
     <?php
-    
-    require_once '../config.php';
+ 
+    require_once 'config.php';
     
     class PHPtoken {
         
@@ -20,34 +20,40 @@
             $token = self::getToken();
             
             if(isset($token)){
-                if(!isset($_{$method}[$row['token']])){
-                    echo 'invalid token'; exit;
-                } 
-            }
-            
-            
+                if($method == 'GET'){
+                    if(!isset($_GET[$token])){
+                        echo 'invalid token'; exit;
+                    } 
+                }else{
+                    if(!isset($_POST[$token])){
+                        echo 'invalid token'; exit;
+                    } 
+                }                
+            }     
             
         }
         
         public function getToken(){
             
             $ip = self::getRealIpAddr();
-            $query = self::$dbh_internal->prepare('SELECT token FROM phpauth_token WHERE ip = ? ORDER BY dt ASC LIMIT 1');
+            $query = self::$dbh_internal->prepare('SELECT token FROM phpauth_tokens WHERE ip = ? ORDER BY dt ASC LIMIT 1');
             
             try{
                 $query->execute(array($ip));
                 $row = $query->fetch(PDO::FETCH_ASSOC);
+               
             }catch(Exception $e ){
                 echo 'get token error'; exit;
             }
+    
             
-            
-            if(isset($row['token'])){
+            if(isset($row['token'])){                
                 return $row['token'];
-            }else{
-                 $token = self::createToken();
+            }else{                
+                  $token = self::createToken();
                 try{
                     self::saveToken($token);
+                    
                     return $token;
                 }catch(Exception $e ){
                     echo 'save token method error'; exit;
@@ -97,5 +103,8 @@
         
     }
 
-    $phptoken = new PHPtoken();
-    $phptoken->getToken();
+    //$phptoken = new PHPtoken();
+    //echo $phptoken->getToken();
+    //$phptoken->checkToken('GET');
+
+

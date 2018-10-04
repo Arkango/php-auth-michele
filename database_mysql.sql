@@ -70,7 +70,7 @@ CREATE TABLE `phpauth_tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` char(50) NOT NULL,
   `ip` char(15) NOT NULL,
-  `dt` datetime NOT NULL,
+  `dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `ip` (`ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
