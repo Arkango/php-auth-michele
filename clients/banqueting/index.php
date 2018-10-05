@@ -15,5 +15,6 @@
 
 
     require_once $customer.'.php';
+    //require_once 'main.php';
 
     $start_customer = new $customer();

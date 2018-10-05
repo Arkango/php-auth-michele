@@ -103,8 +103,6 @@
         
     }
 
-    //$phptoken = new PHPtoken();
-    //echo $phptoken->getToken();
-    //$phptoken->checkToken('GET');
+
 
 
