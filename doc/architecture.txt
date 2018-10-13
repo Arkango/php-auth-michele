@@ -1,0 +1,13 @@
+// file architecture 
+
+|index.php //call config.php 
+|config.php //create main database connection
+|
+|classes //folder of token class and others
+|   -PHPtoken.php protect calls
+|clients //folder of categories
+|   |banqueting //sample of categories
+|       -index.php //start single class customer
+|       -main.php //sample of main class 
+|       -calderoni.php 
+|
