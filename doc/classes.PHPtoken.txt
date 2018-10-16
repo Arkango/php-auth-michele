@@ -1,12 +1,15 @@
 Used Methods
 
 checkToken(method (GET or POST))
-
 take the token from a valid method sended as a parameter and control the validity of them
 
 getToken()
-
 from the ip of the user which send the request return the token for him, if the token doesn't exist gettoken crete them
 
 
 private method
+saveToken() //save the token
+createToken() //create token with random bytes with choosed lenght
+getRealIpAddr() //get the token of the client
+
+//use config.php to take the main db connection
