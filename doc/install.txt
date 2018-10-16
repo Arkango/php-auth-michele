@@ -10,4 +10,12 @@ exec in terminal: cd php-auth-michele
 
 exec in terminal: composer install
 
+create db , copy and paste th content of database_mysql.sql (postgres,mssql available)
+
+use the name of the db and db connection in config.php file
+
+exec in termin: php -S localhost:8080
+
+navigate to localhost:8080
+
 That's it!
