@@ -9,5 +9,4 @@
 |   |banqueting //sample of categories
 |       -index.php //start single class customer
 |       -main.php //sample of main class 
-|       -calderoni.php 
-|
+|       -calderoni.php //single client file
