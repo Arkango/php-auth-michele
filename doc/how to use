@@ -1,15 +1,14 @@
-in the client token start a class
 
 Steps before try calling client method
 -register user
 -login user
 
 
-//to do a call necessary token
+//to do a call token is necessary to do this in the cleint class call the PHPtoken class
 
 1) method GET or POST getToken
 
-//before require data auth control the valid session
+//before require data, auth control the valid session
 
 2) method GET or POST client method
    parameters customer (string) , client (string) , value of token (string)  = 1 
