@@ -13,7 +13,11 @@ use PHPAuth\Auth as PHPAuth;
 $config = new PHPAuthConfig($dbh);
 $auth = new PHPAuth($dbh, $config,"it_IT");
 
-$auth->login("test@email.com", 'T3H-1337-P@$$');
+
+//'T3H-1337-P@$$'
+$auth->login($_GET['email'], $_GET['password']);
+
+
 
 if (!$auth->isLogged()) {
     //recuperare metodi di registrazione, login, e cancellazione utente e cambio passowrd
@@ -22,10 +26,8 @@ if (!$auth->isLogged()) {
     exit();
 }else{
     //inizializzo una delle classi per cliente(verticalizzazione)
-    if(isset($_GET['client'])){
-        $client = filter_var($_GET['client'],FILTER_SANITIZE_STRING);
-    }elseif(isset($_POST['client'])){
-        $client = filter_var($_POST['client'],FILTER_SANITIZE_STRING);
+    if(isset($_REQUEST['client'])){
+        $client = filter_var($_REQUEST['client'],FILTER_SANITIZE_STRING);
     }
 
     
@@ -36,5 +38,10 @@ if (!$auth->isLogged()) {
     require_once 'clients/'.$client.'/index.php';
 
 }
+
+/*
+ * http://localhost/php-auth-michele/?client=banqueting&customer=
+ * calderoni&0593c3d0d78ca2e6ad2ff4522668a72919e49092f11bebaf6248fb03db9be2d8=1
+ */
 
 ?>

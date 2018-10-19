@@ -13,22 +13,16 @@
         
         public function checkToken($method = 'GET'){
             
-            if($method != 'GET' && $method != 'POST'){
+            if($method != 'GET' && $method != 'POST' && $method != 'REQUEST'){
                 echo 'method invalid'; exit;
             }
             
             $token = self::getToken();
             
             if(isset($token)){
-                if($method == 'GET'){
-                    if(!isset($_GET[$token])){
-                        echo 'invalid token'; exit;
-                    } 
-                }else{
-                    if(!isset($_POST[$token])){
-                        echo 'invalid token'; exit;
-                    } 
-                }                
+                if(!isset($_REQUEST[$token])){
+                    echo 'invalid token'; exit;
+                }
             }     
             
         }
