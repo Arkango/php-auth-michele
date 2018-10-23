@@ -30,6 +30,7 @@
         public function getToken(){
             
             $ip = self::getRealIpAddr();
+            $auth = $GLOBALS['auth'];
             $query = self::$dbh_internal->prepare('SELECT token FROM phpauth_tokens WHERE ip = ? ORDER BY dt ASC LIMIT 1');
             
             try{
