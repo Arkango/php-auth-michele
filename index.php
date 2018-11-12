@@ -13,7 +13,7 @@ use PHPAuth\Auth as PHPAuth;
 $config = new PHPAuthConfig($dbh);
 $auth = new PHPAuth($dbh, $config,"it_IT");
 
-
+$auth->register('test@email.com', 'T3H-1337-P@$$', 'T3H-1337-P@$$');
 //'T3H-1337-P@$$'
 $auth->login($_GET['email'], $_GET['password']);
 

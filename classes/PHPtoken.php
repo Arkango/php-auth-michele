@@ -3,12 +3,15 @@
     require_once 'config.php';
     
     class PHPtoken {
-        
+
         private static $dbh_internal;
-        
+        private static $auth_internal;
+
         function __construct(){
             global $dbh;
+            global $auth;
             self::$dbh_internal = $dbh;
+            self::$auth_internal = $auth;
         }
         
         public function checkToken($method = 'GET'){
@@ -30,30 +33,36 @@
         public function getToken(){
             
             $ip = self::getRealIpAddr();
-            $auth = $GLOBALS['auth'];
-            $query = self::$dbh_internal->prepare('SELECT token FROM phpauth_tokens WHERE ip = ? ORDER BY dt ASC LIMIT 1');
-            
-            try{
-                $query->execute(array($ip));
-                $row = $query->fetch(PDO::FETCH_ASSOC);
-               
-            }catch(Exception $e ){
-                echo 'get token error'; exit;
-            }
-    
-            
-            if(isset($row['token'])){                
-                return $row['token'];
-            }else{                
-                  $token = self::createToken();
+            $id = self::$auth_internal->getCurrentUID();
+            if($id){
+                $hash = self::$auth_internal->getHash($id , '8kx;_>h6uMM2@{mU~.]gz!?(');
+                $query = self::$dbh_internal->prepare('SELECT token FROM phpauth_tokens WHERE ip = ? AND hash = ?  ORDER BY dt ASC LIMIT 1');
+
                 try{
-                    self::saveToken($token);
-                    
-                    return $token;
+                    $query->execute(array($ip,$hash));
+                    $row = $query->fetch(PDO::FETCH_ASSOC);
+
                 }catch(Exception $e ){
-                    echo 'save token method error'; exit;
+                    echo 'get token error'; exit;
                 }
+
+
+                if(isset($row['token'])){
+                    return $row['token'];
+                }else{
+                    $token = self::createToken();
+                    try{
+                        self::saveToken($token);
+
+                        return $token;
+                    }catch(Exception $e ){
+                        echo 'save token method error'; exit;
+                    }
+                }
+            }else{
+                echo 'id not valid'; exit;
             }
+
         }
         
         private function createToken(){
@@ -63,18 +72,26 @@
         }
         
         private function saveToken($token){
-            
-            $query = self::$dbh_internal->prepare('INSERT INTO phpauth_tokens (token,ip) VALUES(?,?)');
-            $ip = self::getRealIpAddr();
-            try{
-                $query->execute(array($token,$ip));
-             
-                if(self::$dbh_internal->lastInsertId() == 0) 
-                    echo 'token not saved'; exit;
-                
-            }catch(Exception $e ){
-                echo 'saveToken error'; exit;
+
+            $query = self::$dbh_internal->prepare('INSERT INTO phpauth_tokens (token,ip,hash) VALUES(?,?,?)');
+            $id = self::$auth_internal->getCurrentUID();
+            if($id){
+                $hash =self::$auth_internal->getHash($id , '8kx;_>h6uMM2@{mU~.]gz!?(');
+                $ip = self::getRealIpAddr();
+                try{
+                    $query->execute(array($token,$ip,$hash));
+
+
+                    if(self::$dbh_internal->lastInsertId() == 0)
+                        echo 'token not saved'; exit;
+
+                }catch(Exception $e ){
+                    echo 'saveToken error'; exit;
+                }
+            }else{
+                echo 'no valid id '; exit;
             }
+
             
         }
         

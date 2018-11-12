@@ -8,7 +8,7 @@ class calderoni extends main{
     function __construct(){
        // echo 'classe calderoni inizializzata';
         $phptoken = new PHPtoken();
-    //echo $phptoken->getToken();
+    echo $phptoken->getToken();
     $phptoken->checkToken('GET');
     parent::ciao();
     }

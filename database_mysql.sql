@@ -68,9 +68,9 @@ INSERT INTO `phpauth_config` (`setting`, `value`) VALUES
 DROP TABLE IF EXISTS `phpauth_tokens`;
 CREATE TABLE `phpauth_tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `token` char(50) NOT NULL,
+  `token` char(70) NOT NULL,
   `ip` char(15) NOT NULL,
-  `hash` char(40) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `hash` char(70) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `ip` (`ip`)
