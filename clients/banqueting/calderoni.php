@@ -6,9 +6,14 @@ require_once 'main.php';
 class calderoni extends main{
 
     function __construct(){
-       // echo 'classe calderoni inizializzata';
+
         $phptoken = new PHPtoken();
-    echo $phptoken->getToken();
+        try{
+            echo 'Token da utilizzare per richieste: '.$phptoken->getToken().'<br>';
+        }catch(Exception $e){
+            echo $e;
+        }
+
     $phptoken->checkToken('GET');
     parent::ciao();
     }

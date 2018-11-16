@@ -1,8 +1,8 @@
 <?php
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
 
 require_once 'vendor/autoload.php';
 require_once 'config.php';
@@ -13,9 +13,9 @@ use PHPAuth\Auth as PHPAuth;
 $config = new PHPAuthConfig($dbh);
 $auth = new PHPAuth($dbh, $config,"it_IT");
 
-$auth->register('test@email.com', 'T3H-1337-P@$$', 'T3H-1337-P@$$');
+//$auth->register('test@email.com', 'T3H-1337-P@$$', 'T3H-1337-P@$$');
 //'T3H-1337-P@$$'
-$auth->login($_GET['email'], $_GET['password']);
+//$auth->login($_GET['email'], $_GET['password']);
 
 
 

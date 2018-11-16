@@ -35,7 +35,7 @@
             $ip = self::getRealIpAddr();
             $id = self::$auth_internal->getCurrentUID();
             if($id){
-                $hash = self::$auth_internal->getHash($id , '8kx;_>h6uMM2@{mU~.]gz!?(');
+                $hash = self::$auth_internal->getCurrentSessionHash();
                 $query = self::$dbh_internal->prepare('SELECT token FROM phpauth_tokens WHERE ip = ? AND hash = ?  ORDER BY dt ASC LIMIT 1');
 
                 try{
@@ -76,7 +76,7 @@
             $query = self::$dbh_internal->prepare('INSERT INTO phpauth_tokens (token,ip,hash) VALUES(?,?,?)');
             $id = self::$auth_internal->getCurrentUID();
             if($id){
-                $hash =self::$auth_internal->getHash($id , '8kx;_>h6uMM2@{mU~.]gz!?(');
+                $hash =self::$auth_internal->getCurrentSessionHash();
                 $ip = self::getRealIpAddr();
                 try{
                     $query->execute(array($token,$ip,$hash));
