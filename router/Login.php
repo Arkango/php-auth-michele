@@ -30,6 +30,8 @@ class Login
         $cookieManager = new CM();
         $domainHandler = new DM();
 
+        $_SESSION['message'] = [];
+
 
 
 
@@ -41,6 +43,7 @@ class Login
                 if(!isset($_SERVER['HTTP_REFERER'])){
 			$temp_cookie = (isset($_GET['cookie'])) ? $_GET['cookie'] : $_SESSION['cookie'];
 $filterValue->filter(FILTER_SANITIZE_NUMBER_INT,$temp_cookie);
+                   $_SESSION['HTTP_REFERER_'] = $domainHandler->getDomainFromCookie($temp_cookie);
                    $_SERVER['HTTP_REFERER'] = $domainHandler->getDomainFromCookie($temp_cookie);
 
                 }
@@ -48,11 +51,11 @@ $filterValue->filter(FILTER_SANITIZE_NUMBER_INT,$temp_cookie);
 
 
                 if(!$domainHandler->checkDomain($_SERVER['HTTP_REFERER'])){
-                    throw new Exception('dominio non corretto');
+                    array_push($_SESSION['message'],'dominio non corretto');
                 }
 
                 if(!isset($_GET['cookie']) && !isset($_SESSION['cookie']) ){
-                    throw new Exception('cookie non definito');
+                    array_push($_SESSION['message'],'cookie non definito');
                 }else{
                     $cookie= (isset($_GET['cookie'])) ? $_GET['cookie'] : $_SESSION['cookie'];
                 }
@@ -62,7 +65,7 @@ $filterValue->filter(FILTER_SANITIZE_NUMBER_INT,$temp_cookie);
                 $filterValue->filter(FILTER_SANITIZE_STRING,$cookie);
 
                 if(!$cookieManager->checkCookie($cookie)){
-                    throw new Exception('cookie non corretto');
+                    array_push($_SESSION['message'],'cookie non corretto');
                 }
 
 
@@ -80,11 +83,12 @@ $filterValue->filter(FILTER_SANITIZE_NUMBER_INT,$temp_cookie);
 
             global $auth;
             if(!isset($_SESSION['dominio'])){
-                throw new Exception('dominio non definito');
+                array_push($_SESSION['message'],'dominio non definito');
+
             }
 
             if(!$domainHandler->checkDomain($_SESSION['dominio'])){
-                throw new Exception('dati richiesti non provvisti');
+                array_push($_SESSION['message'],'dati richiesti non provvisti');
             }
 
 
@@ -92,7 +96,7 @@ $filterValue->filter(FILTER_SANITIZE_NUMBER_INT,$temp_cookie);
 
 
             if($_POST['cookie'] != $_SESSION['cookie']){
-                throw new Exception( 'cooie non valido ');
+                array_push($_SESSION['message'],'cookie non valido ');
             }
 
             try {
@@ -104,7 +108,8 @@ $filterValue->filter(FILTER_SANITIZE_NUMBER_INT,$temp_cookie);
             }
 
             if(empty($_POST['user']) || empty($_POST['pass'])){
-                throw new Exception( 'no data provided');
+                array_push($_SESSION['message'],'no data provided');
+
             }
 
             $filterValue->filter(FILTER_SANITIZE_STRING,$_POST['user']);
@@ -113,12 +118,14 @@ $filterValue->filter(FILTER_SANITIZE_NUMBER_INT,$temp_cookie);
 
             if(isset($auth->login($_POST['user'], $_POST['pass'])['hash'])){
                 $hash = $auth->getCurrentSessionHash();
-                header('Location:'.$_SERVER['HTTP_REFERER'].'?hash='.$hash); exit;
+                header('Location: https://'.$_SESSION['HTTP_REFERER_'].'?hash='.$hash); exit;
             }else{
                // header('Location:'.$_SERVER['HTTP_REFERER'].'/login.php');
-                echo 'no logged in';
+                array_push($_SESSION['message'],'no logged in');
                 session_destroy();
-                exit;
+                header("Location: /views/login.php");
+
+                exit();
             }
 
 

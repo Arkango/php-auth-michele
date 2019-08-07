@@ -9,20 +9,20 @@
     "packages": [
         {
             "name": "bjeavons/zxcvbn-php",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bjeavons/zxcvbn-php.git",
-                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5"
+                "reference": "7a7e1130c74c715e84c60c27384f657e9574a933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/331a88932d1a399c989967d3399a4a40eb182fd5",
-                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5",
+                "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/7a7e1130c74c715e84c60c27384f657e9574a933",
+                "reference": "7a7e1130c74c715e84c60c27384f657e9574a933",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3 || ^7.0"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "*",
@@ -50,29 +50,29 @@
                 "password",
                 "zxcvbn"
             ],
-            "time": "2017-01-06 15:43:33"
+            "time": "2018-07-23 05:05:36"
         },
         {
             "name": "google/recaptcha",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/recaptcha.git",
-                "reference": "e7add3be59211482ecdb942288f52da64a35f61a"
+                "reference": "c4a17d6af648d4f3814430cd103cba50b75b571c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/recaptcha/zipball/e7add3be59211482ecdb942288f52da64a35f61a",
-                "reference": "e7add3be59211482ecdb942288f52da64a35f61a",
+                "url": "https://api.github.com/repos/google/recaptcha/zipball/c4a17d6af648d4f3814430cd103cba50b75b571c",
+                "reference": "c4a17d6af648d4f3814430cd103cba50b75b571c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.2.20|^2.12",
+                "friendsofphp/php-cs-fixer": "^2.2.20|^2.15",
                 "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7"
+                "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7.5.11"
             },
             "type": "library",
             "extra": {
@@ -97,7 +97,7 @@
                 "recaptcha",
                 "spam"
             ],
-            "time": "2018-08-05 09:31:53"
+            "time": "2019-05-24 12:44:03"
         },
         {
             "name": "phpauth/phpauth",
@@ -105,18 +105,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPAuth/PHPAuth.git",
-                "reference": "b37d31d72cb55bd63d1b28c113e21715fe52bd17"
+                "reference": "f52064f8bc2a472a73d918968f700153a4e9ed44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPAuth/PHPAuth/zipball/b37d31d72cb55bd63d1b28c113e21715fe52bd17",
-                "reference": "b37d31d72cb55bd63d1b28c113e21715fe52bd17",
+                "url": "https://api.github.com/repos/PHPAuth/PHPAuth/zipball/f52064f8bc2a472a73d918968f700153a4e9ed44",
+                "reference": "f52064f8bc2a472a73d918968f700153a4e9ed44",
                 "shasum": ""
             },
             "require": {
-                "bjeavons/zxcvbn-php": "^0.3",
-                "google/recaptcha": "^1.1",
-                "php": ">=5.6.0",
+                "bjeavons/zxcvbn-php": "^0.4",
+                "google/recaptcha": "^1.2",
+                "php": ">=7.0.0",
                 "phpmailer/phpmailer": "^6.0"
             },
             "require-dev": {
@@ -139,20 +139,20 @@
                 "class",
                 "secure"
             ],
-            "time": "2018-09-14 17:13:37"
+            "time": "2019-06-11 10:44:05"
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.0.5",
+            "version": "v6.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "cb3ea134d4d3729e7857737d5f320cce9caf4d32"
+                "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/cb3ea134d4d3729e7857737d5f320cce9caf4d32",
-                "reference": "cb3ea134d4d3729e7857737d5f320cce9caf4d32",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/0c41a36d4508d470e376498c1c0c527aa36a2d59",
+                "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2018-03-27 13:49:45"
+            "time": "2019-02-01 15:04:28"
         }
     ],
     "packages-dev": [],

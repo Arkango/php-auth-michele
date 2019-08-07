@@ -26,12 +26,14 @@ class Mainrouter
             //aggiungi forgot password
             $login  = new Login();
             try{
-            $login->DoLogin();
+             $login->DoLogin();
             }catch (Exception $e){
                 echo 'Caught exception: ',  $e->getMessage(), "\n"; exit;
             }
 
         }else{
+
+
             //gestisci metodi
         }
     }
