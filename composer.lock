@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "714ac4058223a259168c64c7ec0723dd",
-    "content-hash": "fce80cc458b93a3c4da94a69b1d1d574",
+    "hash": "35eb5a858746545f42cd41701b5d6bcb",
+    "content-hash": "309bc10b4a5585ee8a05386d1f589ee1",
     "packages": [
         {
             "name": "bjeavons/zxcvbn-php",
@@ -51,6 +51,45 @@
                 "zxcvbn"
             ],
             "time": "2018-07-23 05:05:36"
+        },
+        {
+            "name": "gilbitron/easycsrf",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gilbitron/EasyCSRF.git",
+                "reference": "6927d540193f09621c0fb65140c2963992f5fd6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gilbitron/EasyCSRF/zipball/6927d540193f09621c0fb65140c2963992f5fd6b",
+                "reference": "6927d540193f09621c0fb65140c2963992f5fd6b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EasyCSRF\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gilbert Pellegrom",
+                    "email": "gilbert@pellegrom.me"
+                }
+            ],
+            "description": "A simple, standalone CSRF protection library",
+            "time": "2015-03-19 14:44:39"
         },
         {
             "name": "google/recaptcha",

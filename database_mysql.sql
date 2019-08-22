@@ -139,4 +139,19 @@ CREATE TABLE `phpauth_emails_banned` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+create or replace table if not exists phpauth.phpauth_domain_user_authorization
+(
+    id int auto_increment
+        primary key,
+    domain_id int not null,
+    user_id int not null,
+    constraint phpauth_domain_user_authorization_phpauth_domain_id_fk
+        foreign key (domain_id) references phpauth.phpauth_authorized_domain (id)
+            on update cascade on delete cascade,
+    constraint phpauth_domain_user_authorization_phpauth_users_id_fk
+        foreign key (user_id) references phpauth.phpauth_users (id)
+            on update cascade on delete cascade
+);
+
+
 -- 2018-04-12 10:42:00

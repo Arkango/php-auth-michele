@@ -1,6 +1,7 @@
 {
     "require": {
-        "phpauth/phpauth": "dev-master"
+        "phpauth/phpauth": "dev-master",
+        "gilbitron/easycsrf": "^1.0"
     }
 
 }

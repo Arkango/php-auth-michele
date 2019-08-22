@@ -5,13 +5,13 @@
  * Date: 3/3/19
  * Time: 6:23 PM
  */
+namespace Router;
+require_once 'Login.php';
 
-require_once __DIR__.'/../classes/Filtervalue.php';
-require_once __DIR__.'/../classes/Cookiemanager.php';
-require_once __DIR__.'/../classes/Domainhandler.php';
-require_once __DIR__.'/Login.php';
-
-
+use Classes\Cookiemanager;
+use Classes\Domainhandler as DM;
+use Classes\Filtervalue;
+use Classes\PHPtoken;
 
 
 
@@ -32,6 +32,18 @@ class Mainrouter
             }
 
         }else{
+
+            //prefix scelta
+            global $group;
+            global $auth;
+            if($group == "scelta"){
+                $domainHanlder = new DM();
+                $domains = $domainHanlder->getDomains($auth->getCurrentUID());
+
+                foreach ($domains as $domain){
+                    print_r($domain);
+                }
+            }
 
 
             //gestisci metodi

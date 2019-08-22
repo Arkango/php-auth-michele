@@ -14,7 +14,7 @@ class Filtervalue
     public function filter($type,$value,$empty=1){
         if($empty){
             if($value == ''){
-                throw new \ErrorException('dato passato vuoto');
+                array_push($_SESSION['message'],'dato passato vuoto');
             }
         }
         filter_var($value, $type);
