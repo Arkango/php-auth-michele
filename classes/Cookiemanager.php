@@ -23,7 +23,6 @@ class Cookiemanager
         $stmt ->bindParam(':refer',$_SESSION['HTTP_REFERER_']);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-        print_r($result);
         if($result['quanti'] == 1){ return true;}
 
         return false;

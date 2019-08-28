@@ -42,12 +42,13 @@ class Login
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
-
             if (!isset($_SERVER['HTTP_REFERER'])) {
-                $temp_cookie = (array_key_exists('cookie',$_GET)) ? @$_GET['cookie'] : @$_SESSION['cookie'];
+
+
+                $temp_cookie = (array_key_exists('cookie',$_GET)) ? @$_GET['cookie'] :'';
                 $filterValue->filter(FILTER_SANITIZE_NUMBER_INT, $temp_cookie);
                 if($temp_cookie == ""){
-                    array_push($_SESSION['message'], 'cookie non corretto');
+                    //array_push($_SESSION['message'], 'cookie non corretto');
                     header("Location: https://".$_SERVER['HTTP_HOST']."/tokenGenerate.php");
                     exit();
 
@@ -66,7 +67,7 @@ class Login
             if (!isset($_GET['cookie']) && !isset($_SESSION['cookie']) ) {
                 array_push($_SESSION['message'], 'cookie non definito');
             } else {
-                $cookie = (isset($_GET['cookie'])) ? $_GET['cookie'] : $_SESSION['cookie'];
+                $cookie = (isset($_GET['cookie'])) ? $_GET['cookie'] : '';
             }
 
 
@@ -74,8 +75,8 @@ class Login
 
             $filterValue->filter(FILTER_SANITIZE_NUMBER_INT, $cookie);
 
+
             if (!$cookieManager->checkCookie($cookie)) {
-                echo 'here 1'; exit;
                 array_push($_SESSION['message'], 'cookie non corretto');
             }
 
@@ -137,7 +138,6 @@ class Login
                 $Uid = $auth->getCurrentUID();
 
 
-                $domainHandler->isAuthorized($Uid,$_SESSION['dominio']);
 
 
                 if(!$domainHandler->isAuthorized($Uid,$_SESSION['dominio'])){
@@ -165,9 +165,11 @@ class Login
             ';
                 exit;
             } else {
-                //array_push($_SESSION['message'], 'dati login non validi');
+                array_push($_SESSION['message'], 'dati login non validi');
+                $_SESSION['my_token'] = $easyCSRF->generate('my_token');
+
                 //echo 'here 1'; exit;
-                exit(header('Location: /index.php'));
+                exit(header('Location: https://auth.condivision.cloud/views/login.php'));
             }
 
         }

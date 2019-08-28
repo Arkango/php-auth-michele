@@ -8,10 +8,9 @@
 namespace Router;
 require_once 'Login.php';
 
-use Classes\Cookiemanager;
+
 use Classes\Domainhandler as DM;
-use Classes\Filtervalue;
-use Classes\PHPtoken;
+
 
 
 
@@ -22,7 +21,6 @@ class Mainrouter
     {
 
         if(!$logged){
-
             //aggiungi forgot password
             $login  = new Login();
             try{
@@ -30,25 +28,20 @@ class Mainrouter
             }catch (Exception $e){
                 echo 'Caught exception: ',  $e->getMessage(), "\n"; exit;
             }
-
         }else{
-
+            session_start();
             //prefix scelta
             global $group;
             global $auth;
             if($group == "scelta"){
+
                 $domainHanlder = new DM();
                 $domains = $domainHanlder->getDomains($auth->getCurrentUID());
-                if(count($domains) == 0){
-                    echo 'nessun servizio abilitato';
-                }else{
-                    foreach ($domains as $domain){
-                        print_r($domain);
-                    }
-                }
+                unset($domains[0]);
+                $_SESSION['data'] = $domains;
+                $_SESSION['hash'] = $auth->getCurrentSessionHash();
+                header('Location: https://auth.condivision.cloud/views/main.php');
             }
-
-
             //gestisci metodi
         }
     }
