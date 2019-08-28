@@ -4,6 +4,7 @@ if($_SESSION['my_token'] == '' || $_SESSION['cookie'] == ''){
     header('Location: /index.php');
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,6 +24,13 @@ if($_SESSION['my_token'] == '' || $_SESSION['cookie'] == ''){
                         <v-toolbar dark color="primary">
                         <v-toolbar-title>Login</v-toolbar-title>
                         </v-toolbar>
+                        <p>
+                             <ul>
+                                <li v-for="msg in messages">
+                                  {{ msg }}
+                                </li>
+                              </ul>
+                        </p>
                         <v-form action="/index.php" method="post">
                             <v-card-text>
 
@@ -47,8 +55,11 @@ if($_SESSION['my_token'] == '' || $_SESSION['cookie'] == ''){
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.js"></script>
+  <script>
+      var messagesText = <?php echo json_encode($_SESSION['message']);?>;
+  </script>
   <script src="js/app.js">
   </script>
 </body>
 </html>
-
+<?php $_SESSION['message'] = []; ?>

@@ -39,9 +39,12 @@ class Mainrouter
             if($group == "scelta"){
                 $domainHanlder = new DM();
                 $domains = $domainHanlder->getDomains($auth->getCurrentUID());
-
-                foreach ($domains as $domain){
-                    print_r($domain);
+                if(count($domains) == 0){
+                    echo 'nessun servizio abilitato';
+                }else{
+                    foreach ($domains as $domain){
+                        print_r($domain);
+                    }
                 }
             }
 

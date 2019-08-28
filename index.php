@@ -37,6 +37,7 @@ $auth = new PHPAuth($dbh, $config);
 //'T3H-1337-P@$$'
 //$auth->login($_GET['email'], $_GET['password']);
 if (!$auth->isLogged()) {
+
     //router
     new MR(0);
     //recuperare metodi di registrazione, login, e cancellazione utente e cambio passowrd

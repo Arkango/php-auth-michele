@@ -46,8 +46,8 @@ if(!isset($cookie)){
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if(isset($result['name']) &&  $result['name'] != ''){ return $result['name'];}
-
-        throw new \Exception('non riesco a prelevare dominio');
+        return 'auth.condivision.cloud';
+        //throw new \Exception('non riesco a prelevare dominio');
 	
 	}
 
@@ -56,13 +56,13 @@ if(!isset($cookie)){
 
         global $dbh;
 
-        $stmt = $dbh->prepare('SELECT count(*) as ctn FROM phpauth_domain_user_authorization WHERE user_id = :uid and domain_id = (SELECT domain_id from phpauth_authorized_domain where name = :name)');
+        $stmt = $dbh->prepare('SELECT count(*) as cnt FROM phpauth_domain_user_authorization WHERE user_id = :uid and domain_id = (SELECT domain_id from phpauth_authorized_domain where name = :name)');
         $stmt ->bindParam(':uid',$user_id);
         $stmt ->bindParam(':name',$domain);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        return ($result['cnt'] == 1);
+        return (@$result['cnt'] == 1);
 
 
 
@@ -74,7 +74,7 @@ if(!isset($cookie)){
         $stmt = $dbh->prepare('SELECT name FROM phpauth_authorized_domain as ad JOIN phpauth_domain_user_authorization dua On ad.id = dua.domain_id WHERE dua.user_id = :uid ');
         $stmt ->bindParam(':uid',$user_id);
         $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     }
 

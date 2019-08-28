@@ -20,9 +20,10 @@ class Cookiemanager
         global $dbh;
         $stmt = $dbh->prepare('SELECT COUNT(*) as quanti FROM phpauth_cookie_request WHERE token = :name and domain_id = (select id from phpauth_authorized_domain where name = :refer)');
         $stmt ->bindParam(':name',$name);
-        $stmt ->bindParam(':refer',$_SERVER['HTTP_REFERER']);
+        $stmt ->bindParam(':refer',$_SESSION['HTTP_REFERER_']);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        print_r($result);
         if($result['quanti'] == 1){ return true;}
 
         return false;

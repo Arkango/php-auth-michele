@@ -3,7 +3,8 @@ new Vue({
   data: () => ({
     drawer: null,
     user: null,
-    password: null
+    password: null,
+    messages:messagesText
   }),
   props: {
     source: String
